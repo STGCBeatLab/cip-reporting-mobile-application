@@ -1,0 +1,222 @@
+/*
+ * CIP Reporting API Client Application
+ *
+ * Copyright (c) 2013 CIP Reporting
+ * All rights reserved.
+ * 
+ * Redistribution and use in source and binary forms are permitted
+ * provided that the above copyright notice and this paragraph are
+ * duplicated in all such forms and that any documentation,
+ * advertising materials, and other materials related to such
+ * distribution and use acknowledge that the software was developed
+ * by CIP Reporting.  The name of CIP Reporting may not be used to 
+ * endorse or promote products derived from this software without 
+ * specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED ``AS IS'' AND WITHOUT ANY EXPRESS OR
+ * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
+ * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+ *
+ */
+
+body {
+  padding-bottom: 10px;
+  padding-top: 50px;
+}
+
+.navbar {
+  background-image: url(logo_mono_grey_thin.png);
+  background-position: 8px 8px;
+  background-repeat: no-repeat;
+  margin-bottom: 0px;
+  padding-left: 30px;
+}
+
+h1.view-description {
+  position: absolute; 
+  text-align: center;
+  color: white;
+  width: 100%;
+  top: -13px;
+  left: 0px;
+}
+
+/****************************
+ ** Loading...
+ ***************************/
+div.initializing img {
+  display: block; 
+  margin: 0 auto;
+}
+
+div.initializing p.lead {
+  margin-top: 20px;
+  text-align: center;
+}
+ 
+ /****************************
+ ** login.js
+ ***************************/
+.form-signin {
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+}
+
+.form-signin .form-signin-heading, .form-signin .checkbox {
+  margin-bottom: 10px;
+}
+
+.form-signin .checkbox {
+  font-weight: normal;
+}
+
+.form-signin .form-control {
+  position: relative;
+  font-size: 16px;
+  height: auto;
+  padding: 10px;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+
+.form-signin input[type="text"] {
+  margin-bottom: -1px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.form-signin input#form-signin-user {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+/*********************************
+ * CIP Bootstrap Form Hijinx
+ *********************************/
+.form-cip-reporting div.col-md-12 {
+  clear: both;
+}
+
+.form-cip-reporting div.form-group {
+  position: relative;
+  min-height: 80px;
+}
+
+.form-cip-reporting div.form-group span.jsonform-errortext {
+  position: absolute;
+  color: red;
+  top: -2px;
+  right: 20px;
+}
+
+/*********************************
+ * CIP Form Elements
+ *********************************/
+.form-cip-reporting {
+  padding: 20px 10%;
+  margin: 0 auto;
+}
+
+.form-cip-reporting input.cipform_save_report {
+  display: block;
+  width: 33%;
+  min-width: 300px;
+  margin: 0 auto;
+  clear: left;
+}
+
+.form-cip-reporting div.jsonform-required label.control-label:after {
+  content: ' *';
+}
+
+.form-cip-reporting div.form-cip-media-container {
+  position: relative;
+  margin: 10px;
+  float: left;
+}
+
+.form-cip-reporting p button {
+  width: 100%;
+}
+
+.form-cip-reporting .error input {
+  background-color: #ffc0c0;
+}
+
+div.cipform_check_m_custom_field label.checkbox {
+  display: inline-table;
+  margin-bottom: 10px;
+  margin-right: 10px;
+  margin-top: 10px;
+}
+
+div.cipform_check_a_custom_field label.checkbox {
+  display: inline-table;
+  margin-bottom: 10px;
+  margin-right: 10px;
+  margin-top: 10px;
+}
+
+div.cipform_multi_custom_field label.checkbox {
+  display: inline-table;
+  margin-bottom: 10px;
+  margin-right: 10px;
+  margin-top: 10px;
+}
+
+div.cipform_check_s_custom_field label.checkbox {
+  display: inline-table;
+  margin-bottom: 10px;
+  margin-right: 10px;
+  margin-top: 10px;
+}
+
+div.cipform_radio_custom_field label.radio {
+  display: inline-table;
+  margin-bottom: 10px;
+  margin-right: 10px;
+  margin-top: 10px;
+}
+
+div.cipform_boxheader_custom_field div span {
+  background-color: #eeeeee;
+  border: 1px solid black;
+  padding-left: 10px;
+  padding-bottom: 5px;
+  font-weight: bold;
+}
+
+div.cipform_header_custom_field div span {
+  padding-left: 10px;
+  padding-bottom: 5px;
+  font-weight: bold;
+  border-bottom: 2px solid black;
+}
+
+div.cipform_instruction_custom_field div span {
+  background-color: #eeeeee;
+  border: 1px solid black;
+  padding-left: 10px;
+  padding-bottom: 5px;
+}
+
+div.cipform_header_custom_field > div,
+div.cipform_boxheader_custom_field > div,
+div.cipform_spacer_custom_field > div,
+div.cipform_notation_custom_field > div,
+div.cipform_instruction_custom_field > div,
+div.cipform_declaration_custom_field > div
+{
+  padding-top: 22px;
+}
