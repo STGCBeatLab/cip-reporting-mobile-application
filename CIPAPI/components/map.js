@@ -65,7 +65,7 @@
     // Draw where WE are on the map in pretty green!
     var size = new OpenLayers.Size(21, 25);
     var offset = new OpenLayers.Pixel(-(size.w/2), -size.h);
-    var icon = new OpenLayers.Icon('../../lib/OpenLayers/img/marker-green.png', size, offset);
+    var icon = new OpenLayers.Icon("./lib/OpenLayers/img/marker-green.png", size, offset);
     markerLayer.addMarker(new OpenLayers.Marker(new OpenLayers.LonLat(CIPAPI.settings.LONGITUDEDEF, CIPAPI.settings.LATITUDEDEF).transform(new OpenLayers.Projection("EPSG:4326"), new OpenLayers.Projection("EPSG:900913")), icon));
     
     return {
@@ -86,7 +86,7 @@
         // Place the new marker
         var size = new OpenLayers.Size(21, 25);
         var offset = new OpenLayers.Pixel(-(size.w/2), -size.h);
-        var icon = new OpenLayers.Icon('../../lib/OpenLayers/img/marker-gold.png', size, offset);
+        var icon = new OpenLayers.Icon("./lib/OpenLayers/img/marker-gold.png", size, offset);
         movableMarker = new OpenLayers.Marker(new OpenLayers.LonLat(longitude, latitude).transform(new OpenLayers.Projection("EPSG:4326"), new OpenLayers.Projection("EPSG:900913")), icon)
         markerLayer.addMarker(movableMarker);
         
