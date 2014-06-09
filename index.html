@@ -42,7 +42,7 @@
 
     <!-- Custom Styling -->
     <link href="./app/style.css" rel="stylesheet">
-    <link href="app/STGCcustom.css" rel="stylesheet">
+    <link href="Customize/custom.css" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -51,35 +51,21 @@
     <![endif]-->
   </head>
   <body>
-  
-  <section class="page-header navbar-fixed-top" id="HeaderI">
-  <img src="app/img/CWCR-BW-Top5.png" class="bannerG">
-  	<div class="container" id="wrapper">
-    	<div class="row">
-        	<div class="col-md-3 col-sm-2">
-            	 <img src="app/img/STGC_Badge.png" class="img-responsive" alt="">
-            </div>
-        	<div class="col-md-9 col-sm-10" id="CommTitle">
-                <h2>Siletz Tribal Gaming Commission<br><small>for Official Use Only</small></h2>
-                <a href="#" class="btn btn-sm btn-danger">End User Policy</a>
-  			</div>
-        </div>
-    </div>
-    <img src="app/img/CWCR-BW-Bottom5.png" class="bannerG">
-  </section>
-  
-  
+  	<section id="CustomHeader"></section>
     <div id="container">
+    
       <div class="initializing">
         <img src="./app/logo_mono_blue_thin.png" />
         <img src="./app/progress-bar.gif" />
         <p class="lead">Please wait, Initializing...</p>
       </div>
     </div>
+    <footer id="CustomFooter"></footer>
+    <div id="EUP"></div>
     
     <!-- External librarys - jQuery, Bootstrap, log4javascript, etc. -->
-    <script src="./lib/jquery-2.0.3.js"></script>
-    <script src="./lib/jsonform-bootstrap3/deps/underscore.js"></script>
+	<script src="./lib/jquery-2.0.3.js"></script> 
+	<script src="./lib/jsonform-bootstrap3/deps/underscore.js"></script>
     <script src="./lib/jsonform-bootstrap3/deps/opt/jsv.js"></script>
     <script src="./lib/jquery-ui.js"></script>
     <script src="./lib/jquery.actual.js"></script>
@@ -92,8 +78,9 @@
     <script src="./lib/log4javascript/log4javascript.js"></script>
     <script src="./lib/jsonform-bootstrap3/lib/jsonform.js"></script>
     <script src="./lib/summernote/dist/summernote.js"></script>
-    
+    <script src="Customize/custom.js"></script>
     <script type="text/javascript">
+	
       // Initialize logger
       (function() {
         var consoleAppender = new log4javascript.BrowserConsoleAppender();
@@ -143,5 +130,6 @@
       
       $(document).ready(function() { $(document).trigger('cipapi-init'); });
     </script>
+    
   </body>
 </html>
