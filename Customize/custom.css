@@ -26,10 +26,13 @@ body {
 	width:100%; 
 	opacity:.5;
 	}
+footer {
+	background:rgba(42,42,42,1.00);
 	
+	}
 @media (max-width: 768px){
 	body {
-		padding-top:420px;
+		padding-top:230px;
 		}
 	#CommTitle {
 		margin-right:15px;
@@ -37,5 +40,10 @@ body {
     h2 {
 		font-size:15px;
 		font-family:Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", serif;
+		}
+	#STGClogo {
+		width:95px;
+		float:left;
+		margin-left:15px;
 		}
 }
