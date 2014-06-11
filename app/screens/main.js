@@ -46,8 +46,8 @@
       '  </div>' +
       '  <div class="navbar-collapse collapse">' +	  
       '    <ul class="nav navbar-nav navbar-right">' +
+	  '      <li><a href="#main"><span class="glyphicon glyphicon-list"></span> Form List</a></li>' +
 	  '      <li><a href="#logout"><span class="glyphicon glyphicon-lock"></span> Log Out</a></li>' +
-	  '      <li><a href="#main"><span class="glyphicon glyphicon-backward"></span> Form List</a></li>' +
 	  '    </ul>' +
       '  </div>' +
       '</div>' +
