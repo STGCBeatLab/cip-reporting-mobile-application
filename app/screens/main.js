@@ -44,10 +44,11 @@
       '      <span class="icon-bar"></span>' +
       '    </button>' +
       '  </div>' +
-      '  <div class="navbar-collapse collapse">' +
+      '  <div class="navbar-collapse collapse">' +	  
       '    <ul class="nav navbar-nav navbar-right">' +
-      '      <li><a href="#logout">Log Out</a></li>' +
-      '    </ul>' +
+	  '      <li><a href="#logout"><span class="glyphicon glyphicon-lock"></span> Log Out</a></li>' +
+	  '      <li><a href="#main"><span class="glyphicon glyphicon-backward"></span> Form List</a></li>' +
+	  '    </ul>' +
       '  </div>' +
       '</div>' +
       '<div id="main-content-area"><form class="form-cip-reporting" role="form"></form></div>';
