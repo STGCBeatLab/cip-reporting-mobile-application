@@ -11,6 +11,7 @@ body {
 	z-index:1000; 
 	background:rgba(2,2,2,1.00); 
 	padding-top:25px;
+	display:none;
 	}
 
 #wrapper {
