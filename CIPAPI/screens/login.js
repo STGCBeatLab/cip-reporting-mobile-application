@@ -36,7 +36,7 @@
       '  <label class="checkbox">' +
       '    <input id="form-signin-remember" type="checkbox" value="remember-me"> Remember me' +
       '  </label>' +
-      '  <button id="form-signin" class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>' +
+      '  <button id="form-signin" class="btn btn-lg btn-danger btn-block" type="submit">Sign in</button>' +
       '</form>';
     
     $('div#container').html(html);

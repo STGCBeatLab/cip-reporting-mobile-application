@@ -5,4 +5,4 @@ $(function(){
 	  $("#EUP") .load("./Customize/EUPModal.html");
 });
     
-$('body').css('height', '+=9999').css('height', '-=9999');
+$(".input-file").filestyle({input: false});

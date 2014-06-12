@@ -42,7 +42,7 @@
 
     <!-- Custom Styling -->
     <link href="./app/style.css" rel="stylesheet">
-    <link href="Customize/custom.css" rel="stylesheet">
+    <link href="Customize/css/custom.css" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -51,6 +51,7 @@
     <![endif]-->
   </head>
   <body>
+   <div class="contents">
   	<header id="CustomHeader"></header>
     <div id="container">
       <div class="initializing">
@@ -59,7 +60,7 @@
         <p class="lead">Please wait, Initializing...</p>
       </div>
     </div>
-    <footer id="CustomFooter"></footer>
+   </div> 
     <div id="EUP"></div>
     
     <!-- External librarys - jQuery, Bootstrap, log4javascript, etc. -->
@@ -77,8 +78,8 @@
     <script src="./lib/log4javascript/log4javascript.js"></script>
     <script src="./lib/jsonform-bootstrap3/lib/jsonform.js"></script>
     <script src="./lib/summernote/dist/summernote.js"></script>
-    <script src="Customize/custom.js"></script>
-    <script type="text/javascript">
+    <script src="Customize/js/custom.js"></script>
+	<script type="text/javascript">
 	
       // Initialize logger
       (function() {
@@ -129,6 +130,5 @@
       
       $(document).ready(function() { $(document).trigger('cipapi-init'); });
     </script>
-    
   </body>
 </html>

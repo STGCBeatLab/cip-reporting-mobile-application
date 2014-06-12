@@ -51,7 +51,7 @@
 	  '    </ul>' +
       '  </div>' +
       '</div>' +
-      '<div id="main-content-area"><form class="form-cip-reporting" role="form"></form></div>';
+	  '<div id="main-content-area"><form class="form-cip-reporting" role="form"></form></div>';
     
     $('div#container').html(html);
 
@@ -101,7 +101,7 @@
     $('div#main-content-area form').append('<div class="form-button-list"></div>');
     
     $.each(buttonCollection, function(key, val) {
-      $('div#main-content-area form div').append('<p><button type="button" data-form="' + key + '" class="btn btn-primary btn-lg">' + val + '</button></p>');
+      $('div#main-content-area form div').append('<p><button type="button" data-form="' + key + '" class="btn btn-danger btn-md">' + val + '</button></p>');
     });
     
     $('div#main-content-area form div p button').each(function() {
