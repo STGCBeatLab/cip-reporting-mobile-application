@@ -3,18 +3,22 @@
 
 body {
 	padding-top:300px;
-
-	background-color: #222;
+	background-color: #ADADAD;
 	background-repeat: repeat;
 	color:black;
 }
 
 	
 #HeaderI {
-	z-index:1000; 
-	background:rgba(2,2,2,1.00); 
+	z-index:1000;  
 	padding-top:25px;
-	
+	background: -moz-linear-gradient(left,  rgba(0,0,0,0.35) -1%, rgba(0,0,0,0.35) 0%, rgba(0,0,0,1) 57%, rgba(0,0,0,1) 100%);
+	background: -webkit-gradient(linear, left top, right top, color-stop(-1%,rgba(0,0,0,0.35)), color-stop(0%,rgba(0,0,0,0.35)), color-stop(57%,rgba(0,0,0,1)), color-stop(100%,rgba(0,0,0,1)));
+	background: -webkit-linear-gradient(left,  rgba(0,0,0,0.35) -1%,rgba(0,0,0,0.35) 0%,rgba(0,0,0,1) 57%,rgba(0,0,0,1) 100%);
+	background: -o-linear-gradient(left,  rgba(0,0,0,0.35) -1%,rgba(0,0,0,0.35) 0%,rgba(0,0,0,1) 57%,rgba(0,0,0,1) 100%);
+	background: -ms-linear-gradient(left,  rgba(0,0,0,0.35) -1%,rgba(0,0,0,0.35) 0%,rgba(0,0,0,1) 57%,rgba(0,0,0,1) 100%);
+	background: linear-gradient(to right,  rgba(0,0,0,0.35) -1%,rgba(0,0,0,0.35) 0%,rgba(0,0,0,1) 57%,rgba(0,0,0,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#59000000', endColorstr='#000000',GradientType=1 );
 	}
 
 #wrapper {
@@ -38,20 +42,6 @@ h2 {
 	color:rgba(255,255,255,1.00);
 	}	
 
-#HeaderI {
-	background: -moz-linear-gradient(left,  rgba(30,87,153,0) 0%, rgba(0,0,0,1) 100%); /* FF3.6+ */
-	background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(30,87,153,0)), color-stop(100%,rgba(0,0,0,1))); /* Chrome,Safari4+ */
-	background: -webkit-linear-gradient(left,  rgba(30,87,153,0) 0%,rgba(0,0,0,1) 100%); /* Chrome10+,Safari5.1+ */
-	background: -o-linear-gradient(left,  rgba(30,87,153,0) 0%,rgba(0,0,0,1) 100%); /* Opera 11.10+ */
-	background: -ms-linear-gradient(left,  rgba(30,87,153,0) 0%,rgba(0,0,0,1) 100%); /* IE10+ */
-	background: linear-gradient(to right,  rgba(30,87,153,0) 0%,rgba(0,0,0,1) 100%); /* W3C */
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#001e5799', endColorstr='#000000',GradientType=1 ); /* IE6-9 */
-	
-}
-
-.form-signin-heading {
-	color:rgba(156,24,27,1.00);
-	}
 @media (max-width: 750px){
 	body {
 		padding-top:230px;
@@ -70,15 +60,3 @@ h2 {
 		}
 }
 
-/*CIP Field Styles*/
-/* Main contents area*/
-.contents {
-	background: #eee;
-	padding: 20px 40px;
-	width: 100%;
-	height: 100%;
-	overflow-y: auto;
-
-	
-}
-	
