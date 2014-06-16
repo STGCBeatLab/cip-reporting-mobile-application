@@ -10,7 +10,7 @@
 
   <author href="http://www.cipreporting.com" email="jriffel@cipreporting.com">Jason Riffel</author>
 
-  <preference name="orientation" value="portrait" />
+  <preference name="orientation" value="default" />
   <preference name="fullscreen" value="true" />
   <preference name="exit-on-suspend" value="false" />
   <preference name="android-installLocation" value="auto" />
