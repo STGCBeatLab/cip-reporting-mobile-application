@@ -21,7 +21,7 @@
 
 body {
   padding-bottom: 10px;
-  padding-top: 50px;
+  padding-top: 57px;
 }
 
 body.password {
@@ -46,6 +46,26 @@ i#navbar-network-access {
 i#navbar-pending-reports {
   font-size: 18px;
   color: #ccc;
+}
+
+/****************************
+ ** Logger...
+ ***************************/
+div#logger {
+  position: absolute; 
+  padding-top: 57px;
+  height: 100vh; 
+  width: 100%; 
+  top: 0px;
+  
+  display: none;
+}
+
+/****************************
+ ** Help...
+ ***************************/
+div#help-content-area {
+  padding: 0 10px;
 }
 
 /****************************

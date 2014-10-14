@@ -64,6 +64,7 @@
 
       // Let someone else render the screen now
       $('body').attr('class', currHash);
+      $(document).trigger('cipapi-pre-handle', { hash: currHash, params: paramObj });
       $(document).trigger('cipapi-handle-' + currHash, { hash: currHash, params: paramObj });
       $(document).trigger('cipapi-routed');
     }
@@ -74,6 +75,7 @@
 
       log.info("Invoking updater cipapi-update-" + currHash + ' (' + currParams + ')');
 
+      $(document).trigger('cipapi-pre-update', { hash: currHash, params: paramObj });
       $(document).trigger('cipapi-update-' + currHash, { hash: currHash, params: paramObj });
       $(document).trigger('cipapi-routed');
     }

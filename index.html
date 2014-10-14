@@ -57,6 +57,7 @@
         <p class="lead">Please wait, Initializing...</p>
       </div>
     </div>
+    <div id="logger"></div>
     
     <!-- Phonegap / Cordova and Plugins -->
     <script src="cordova.js"></script>
@@ -93,6 +94,11 @@
         rootLogger.removeAllAppenders();
         rootLogger.addAppender(consoleAppender);
         rootLogger.setLevel(log4javascript.Level.ALL);
+        
+        var inPageAppender = new log4javascript.InPageAppender($('div#logger').get(0));
+        inPageAppender.setHeight('100%');
+        inPageAppender.setMaxMessages(500);
+			  rootLogger.addAppender(inPageAppender);
       })();
     </script>
 
@@ -110,12 +116,16 @@
     <script src="./CIPAPI/screens/logout.js"></script>
     <script src="./app/screens/login.js"></script>
     <script src="./app/screens/main.js"></script>
+    <script src="./app/screens/diagnostics.js"></script>
+    <script src="./app/screens/logger.js"></script>
+    <script src="./app/screens/help.js"></script>
 
     <!-- Application Libraries -->
     <script src="./app/lib/mobileforms.js"></script>
     <script src="./app/lib/reportstore.js"></script>
     <script src="./app/lib/help.js"></script>
     <script src="./app/lib/geolocation.js"></script>
+    <script src="./app/lib/navbar.js"></script>
     
     <!-- Customer Provided -->
     <script src="./app/customize/js/custom.js"></script>

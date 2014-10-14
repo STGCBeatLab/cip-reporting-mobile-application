@@ -28,36 +28,7 @@
   var passwordFromURL = false;
   
   $(document).on('cipapi-handle-login', function(event, info) {
-    var logoURL = CIPAPI.config.isPackaged ? './res/logo_mono_grey_thin.png' : '../../res/logo_mono_grey_thin.png';
-  
-    var html = '' +
-      '<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">' +
-      '  <div class="navbar-header">' +
-      '    <i id="navbar-network-access">' +
-      '      <img id="cipapi-navbar-logo" src="' + logoURL + '" />' +
-      '    </i>' +
-      '    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">' +
-      '      <span class="sr-only">Toggle navigation</span>' +
-      '      <span class="icon-bar"></span>' +
-      '      <span class="icon-bar"></span>' +
-      '      <span class="icon-bar"></span>' +
-      '    </button>' +
-      '  </div>' +
-      '  <div class="navbar-collapse collapse">' +
-      '    <ul class="nav navbar-nav navbar-right">' +
-      '      <li><a data-toggle="collapse" data-target=".navbar-collapse" href="#logout"><span class="glyphicon glyphicon-repeat"></span> Start Over</a></li>' +
-      '      <li><a data-toggle="collapse" data-target=".navbar-collapse" href="#login!action=help"><span class="glyphicon glyphicon-question-sign"></span> Help</a></li>' +
-      '    </ul>' +
-      '  </div>' +
-      '</div>' +
-      '<div id="login-content-area"></div>';
-
-    $('div#container').html(html);
-
     renderLoginScreen(info);
-
-    // Hide splash screen?
-    $(document).trigger('cipapi-hide-splash-screen');
   });
   
   // Updates are fired to login on failed logins
@@ -125,12 +96,6 @@
       renderLogin();
     }
 
-    // Show help
-    else if (info.params.action == 'help') {
-      log.debug("Render help screen");
-      renderHelp();
-    }
-
     // Navigate to the button list if all else fails
     else {
       log.debug("Redirecting to login!action=login");
@@ -138,15 +103,6 @@
     }
   }
 
-  // Show the help screen
-  function renderHelp() {
-    log.debug("Rendering help");
-    $('div#login-content-area').append('' +
-      '<div class="col-xs-12">' +
-        CIPAPI.help.getHTML() +
-      '</div>');
-  }
-  
   // Show the forms
   function renderLogin() {
     var html = '' +

@@ -162,9 +162,10 @@
           }, 
           // Options
           {
-            destinationType: Camera.DestinationType.DATA_URL,
-               encodingType: Camera.EncodingType.JPEG,
-                 sourceType: src
+               destinationType: Camera.DestinationType.DATA_URL,
+                  encodingType: Camera.EncodingType.JPEG,
+            correctOrientation: true,
+                    sourceType: src
           });
         };
         

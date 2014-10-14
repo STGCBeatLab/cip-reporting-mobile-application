@@ -106,11 +106,13 @@
       // Compose into form data
       var formData = new FormData();
       $.each(reportStore[0].serializedData, function(key, val) {
+        log.debug('Adding form value: key + ' = ' + val);
         formData.append(key, val);
       });
 
       // Add in images which were serialized
       $.each(reportStore[0].serializedImages, function(index, stored) {
+        log.debug('Adding image: ' + stored.fileName + ' (' + stored.mimeType + ')');
         formData.append("file[]", CIPAPI.forms.b64toBlob(stored.b64Content, stored.mimeType), stored.fileName);
       });
       

@@ -43,44 +43,10 @@
 
   // Main screen
   $(document).on('cipapi-handle-main', function(event, info) {
-    var logoURL = CIPAPI.config.isPackaged ? './res/logo_mono_grey_thin.png' : '../../res/logo_mono_grey_thin.png';
-  
-    var html = '' +  
-      '<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">' +
-      '  <div class="navbar-header">' +
-      '    <i id="navbar-network-access">' +
-      '      <img id="cipapi-navbar-logo" src="' + logoURL + '" />' +
-      '    </i>' +
-      '    <i id="navbar-pending-reports" style="display: none;"><span class="glyphicon glyphicon-send"></span> <span id="navbar-pending-count">0</span> Pending</i>' +
-      '    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">' +
-      '      <span class="sr-only">Toggle navigation</span>' +
-      '      <span class="icon-bar"></span>' +
-      '      <span class="icon-bar"></span>' +
-      '      <span class="icon-bar"></span>' +
-      '    </button>' +
-      '  </div>' +
-      '  <div class="navbar-collapse collapse">' +
-      '    <ul class="nav navbar-nav navbar-right">' +
-      '      <li><a data-toggle="collapse" data-target=".navbar-collapse" href="#main!action=list"><span class="glyphicon glyphicon-list-alt"></span> Report List</a></li>' +
-      '      <li><a data-toggle="collapse" data-target=".navbar-collapse" id="cipapi-server-synchronize" href="javascript: void(0)"><span class="glyphicon glyphicon-refresh"></span> Synchronize</a></li>' +
-      '      <li><a data-toggle="collapse" data-target=".navbar-collapse" href="#logout"><span class="glyphicon glyphicon-log-out"></span> Sign Out</a></li>' +
-      '      <li><a data-toggle="collapse" data-target=".navbar-collapse" href="#main!action=help"><span class="glyphicon glyphicon-question-sign"></span> Help</a></li>' +
-      '    </ul>' +
-      '  </div>' +
-      '</div>' +
-      '<div id="main-content-area"><form class="form-cip-reporting" role="form"></form></div>';
-    
-    $('div#container').html(html);
-
-    $('a#cipapi-server-synchronize').on('click', function(evt) { $(document).trigger('cipapi-credentials-set'); });
-    
     renderMainScreen(info);
     
     // Force an update of the reportstore monitor
     $(document).trigger('cipapi-reportstore-change');
-
-    // Hide splash screen?
-    $(document).trigger('cipapi-hide-splash-screen');
   });
   
   // Do some reports and stuff!
@@ -100,8 +66,8 @@
       return;
     }
     
-    // Terminate the app on login screen anywhere but on help
-    if (handler == 'login' && !arguments[0].match(/^action=help/)) {
+    // Terminate the app on login screen anywhere
+    if (handler == 'login') {
       e.preventDefault();
       navigator.app.exitApp();
       return;
@@ -212,6 +178,7 @@
 
   // Store images for packaging later  
   $(document).on('cipapi-forms-media-added', function(event, info) {
+    log.debug('Parking image: ' + info.fileName + ' (' + info.mimeType + ')');
     imageStorage.push(info);
   });
 
@@ -230,25 +197,12 @@
     else if (info.params.action == 'form') {
       renderForm(info.params.form);
     }
-    // Show help
-    else if (info.params.action == 'help') {
-      renderHelp();
-    }
     // Navigate to the button list if all else fails
     else {
       CIPAPI.router.goTo('main', { action: 'list' });
     }
   }
 
-  // Show the help screen
-  function renderHelp() {
-    log.debug("Rendering help");
-    $('div#main-content-area form').append('' +
-      '<div class="col-xs-12">' +
-        CIPAPI.help.getHTML() +
-      '</div>');
-  }
-  
   // Render form list
   function renderButtons(buttonCollection) {
     log.debug("Rendering form button collection");
