@@ -106,7 +106,7 @@
       // Compose into form data
       var formData = new FormData();
       $.each(reportStore[0].serializedData, function(key, val) {
-        log.debug('Adding form value: key + ' = ' + val);
+        log.debug('Adding form value: ' + key + ' -> ' + val);
         formData.append(key, val);
       });
 
