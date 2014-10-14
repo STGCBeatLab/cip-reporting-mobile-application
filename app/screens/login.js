@@ -306,7 +306,9 @@
             if (typeof cfg[0].password == 'undefined') throw "Invalid Password";
             if (typeof cfg[0].sso      == 'undefined') throw "Invalid SSO";
 
+            // Lookup successful!
             log.debug("Look up response validated");
+            $(document).trigger('cipapi-login-email-lookup', emailAddress);
 
             $('input#form-signin-host').val(cfg[0].host);
             $('input#form-signin-user').val(cfg[0].user + '@' + cfg[0].database + '/' + cfg[0].profile);

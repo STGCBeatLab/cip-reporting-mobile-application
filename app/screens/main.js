@@ -25,6 +25,8 @@
   
   var log = log4javascript.getLogger("CIPAPI.main");
 
+  var imageStorage = [];
+  
   // Navigating away from main, have my children clean up after themselves
   $(document).on('cipapi-unbind', function() {
     log.debug("Cleaning up my children");
@@ -145,6 +147,11 @@
   
   // Notification when all reports have been sent
   $(document).on('cipapi-reportstore-empty', function(event, info) {
+    // Vibrate for a second
+    if (window.cordova) {
+      navigator.vibrate(1000);
+    }
+    
     bootbox.dialog({
       message: "All pending reports have been successfully sent",
         title: "All Reports Sent",
@@ -155,6 +162,11 @@
         }
       }
     });
+  });
+  
+  // Capture and store the email address used for an account lookup
+  $(document).on('cipapi-login-email-lookup', function(event, info) {
+    localStorage.setItem('cipapi-login-email-lookup', info);
   });
   
   // Fired when the REST engine is active
@@ -197,7 +209,12 @@
     
     navigator.splashscreen.hide();
   });
-  
+
+  // Store images for packaging later  
+  $(document).on('cipapi-forms-media-added', function(event, info) {
+    imageStorage.push(info);
+  });
+
   // Helper to render the main screen from initial navigation and hash tag updates
   function renderMainScreen(info) {
     log.debug("Rendering main screen");
@@ -236,10 +253,14 @@
   function renderButtons(buttonCollection) {
     log.debug("Rendering form button collection");
     
+    // Configurable title
+    var title = CIPAPI.config.reportListTitle;
+    var description = CIPAPI.config.reportListDescription;
+    
     var header = '' +
       '<div class="col-xs-12">' +
-      '  <h2>Submit a Report</h2>' +
-      '  <span>To submit a report select and complete one of these available forms:</span>' +
+      '  <h2>' + title + '</h2>' +
+      '  <span>' + description + '</span>' +
       '</div>';
     $('div#main-content-area form').append(header);
     $('div#main-content-area form').append('<div class="form-button-list"></div>');
@@ -267,6 +288,9 @@
       return;
     }
 
+    // Reset image storage
+    imageStorage = [];
+    
     // Make a deep copy
     var formDefinition = jQuery.extend(true, {}, CIPAPI.mobileforms[formName]);
 
@@ -278,22 +302,12 @@
 
     formDefinition.onSubmit = function(errors, values) {
       if (!errors) {
-        // If formData object exists, we may have attachments injected into this sealed proxy object (modern browsers support ajax file upload this way).
-        // if this exists, then we will submit it, not the value array.  If it does not exist, then we submit the value array old school.  However, the
-        // value array holds the fields we want to post ultimately so we have to merge them into the formData object if defined.
-        var formData = window.FormData ? new FormData() : false;
-        
-        if (formData) {
-          $.each(values, function(key, val) {
-            formData.append(key, val);
-          });
-        }
-
         // Store the report for transmission
         CIPAPI.reportstore.storeReport({
-                formName: formName,
-          serializedData: formData ? formData : values,
-          destinationURL: '/api/versions/current/integrations/' + escape(formName)
+                  formName: formName,
+            serializedData: values,
+          serializedImages: imageStorage,
+            destinationURL: '/api/versions/current/integrations/' + escape(formName)
         });
         
         // Kick off a report send attempt
@@ -324,6 +338,10 @@
     $('a#cipform-proxy-submit').on('click', function(evt) {
       $('input.cipform-save-report').click();
     });
+    
+    // Give camera and library access links a make over if present
+    $('a.cipform_image_from_camera').addClass('btn btn-primary btn-md btn-custom cipform-real-camera').html('<span class="glyphicon glyphicon-camera"></span> From Camera');
+    $('a.cipform_image_from_library').addClass('btn btn-primary btn-md btn-custom cipform-real-camera').html('<span class="glyphicon glyphicon-picture"></span> From Library');
   }
 
 })(window);

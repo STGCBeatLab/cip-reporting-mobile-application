@@ -102,11 +102,22 @@
         log.debug("No more reports to send");
         return;
       }
-    
+
+      // Compose into form data
+      var formData = new FormData();
+      $.each(reportStore[0].serializedData, function(key, val) {
+        formData.append(key, val);
+      });
+
+      // Add in images which were serialized
+      $.each(reportStore[0].serializedImages, function(index, stored) {
+        formData.append("file[]", CIPAPI.forms.b64toBlob(stored.b64Content, stored.mimeType), stored.fileName);
+      });
+      
       // Fire away
       CIPAPI.rest.post({
         url: reportStore[0].destinationURL,
-        data: reportStore[0].serializedData,
+        data: formData,
         success: function(response) {
           log.debug("Report sent");
           

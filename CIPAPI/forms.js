@@ -52,6 +52,30 @@
     });
   }
   
+  CIPAPI.forms.b64toBlob = function(b64Data, contentType, sliceSize) {
+    contentType = contentType || '';
+    sliceSize = sliceSize || 512;
+
+    var byteCharacters = atob(b64Data);
+    var byteArrays = [];
+
+    for (var offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+      var slice = byteCharacters.slice(offset, offset + sliceSize);
+
+      var byteNumbers = new Array(slice.length);
+      for (var i = 0; i < slice.length; i++) {
+        byteNumbers[i] = slice.charCodeAt(i);
+      }
+
+      var byteArray = new Uint8Array(byteNumbers);
+
+      byteArrays.push(byteArray);
+    }
+
+    var blob = new Blob(byteArrays, {type: contentType});
+    return blob;
+  }  
+  
   CIPAPI.forms.Render = function(formDefinition, formSelector) {
     // Default form selector
     if (!formSelector) formSelector = 'form.form-cip-reporting';
@@ -93,7 +117,67 @@
     equalizeElementSizes(formSelector + 'div.cipform_check_s_custom_field label.checkbox');
     equalizeElementSizes(formSelector + 'div.cipform_check_a_custom_field label.checkbox');
     equalizeElementSizes(formSelector + 'div.cipform_radio_custom_field label.radio');
+    
+    // If phonegap is loaded AND phonegap camera controls are available use it...
+    if (window.cordova && window.navigator && window.navigator.camera) {
+      $(formSelector + ' input[type=file]').each(function() {
+        // Put a media gallery into place
+        var container = $(this).closest('div.form-group');
+        var fromCam = $('<a class="cipform_image_from_camera"  href="javascript: void(0)">From Camera</a>');
+        var fromLib = $('<a class="cipform_image_from_library" href="javascript: void(0)">From Library</a>');
+        var gallery = $('<div class="form-cip-media-thumbnails"></div><div style="clear: both;"></div>');
+        container.append(fromCam).append(fromLib).append(gallery);
         
+        // Shared camera code
+        function captureImage(src) {
+          navigator.camera.getPicture(
+          // On Success
+          function(imageData) {
+            var now = new Date();
+            var filename = sprintf("%04d-%02d-%02d_%02d-%02d-%02d.jpg", 
+              now.getFullYear(), now.getMonth(), now.getDate(), now.getHours(), now.getMinutes(), now.getSeconds());
+            
+            // Display on screen
+            var div = $('<div data-toggle="tooltip" data-placement="bottom" class="form-cip-media-container" style="width: ' + CIPAPI.config.thumbMaxWidth + '; height: ' + CIPAPI.config.thumbMaxHeight + ';"></div>');
+            var img = $('<img data-scale="best-fit" />');
+            img.attr('src', 'data:image/jpeg;base64,' + imageData);  
+            container.find('div.form-cip-media-thumbnails').append(div.append(img));
+            img.imageScale();
+            div.tooltip({ title: filename });
+            
+            // Append to form
+            var formData = new FormData(); 
+            formData.append("file[]", CIPAPI.forms.b64toBlob(imageData, 'image/jpeg'), filename);
+            
+            // Also let the world know...
+            $(document).trigger('cipapi-forms-media-added', {
+                fileName: filename,
+                mimeType: 'image/jpeg',
+              b64Content: imageData
+            });
+          },
+          // On Error
+          function(msg) {
+            log.error(msg);
+          }, 
+          // Options
+          {
+            destinationType: Camera.DestinationType.DATA_URL,
+               encodingType: Camera.EncodingType.JPEG,
+                 sourceType: src
+          });
+        };
+        
+        // From the camera
+        fromCam.on('click', function() { captureImage(Camera.PictureSourceType.CAMERA); });
+
+        // From the library
+        fromLib.on('click', function() { captureImage(Camera.PictureSourceType.PHOTOLIBRARY); });
+
+        $(this).remove(); // Nuke the file input all together...
+      });
+    }
+    
     // Setup AJAX image upload handlers if browser is capable, else hide any file upload inputs
     var formData = window.FormData ? new FormData() : false;
     if (formData) {
@@ -117,11 +201,23 @@
                 container.find('div.form-cip-media-thumbnails').append(div.append(img));
                 img.imageScale();
                 div.tooltip({ title: file.name });
+                
+                // Also let the world know...
+                var regex = /^data:(.+?);base64,(.*)$/;
+                var matches = e.target.result.match(regex);
+                var mimeType = matches[1];
+                var b64Content = matches[2];
+                $(document).trigger('cipapi-forms-media-added', {
+                    fileName: file.name,
+                    mimeType: mimeType,
+                  b64Content: b64Content
+                });
+
               };
               reader.readAsDataURL(file);
             }
             
-            formData.append("file[]", file);
+            formData.append("file[]", file, file.name);
           }
         });
       });

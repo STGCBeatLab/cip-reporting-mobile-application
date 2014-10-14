@@ -115,6 +115,7 @@
     <script src="./app/lib/mobileforms.js"></script>
     <script src="./app/lib/reportstore.js"></script>
     <script src="./app/lib/help.js"></script>
+    <script src="./app/lib/geolocation.js"></script>
     
     <!-- Customer Provided -->
     <script src="./app/customize/js/custom.js"></script>
@@ -123,7 +124,7 @@
     <script type="text/javascript">
       // Default Configurations - which can be overriden by an integration
       CIPAPI.config.setDefaults({
-            applicationVersion: '1.0.3602',                     // Set by the packaging script to know our own version
+            applicationVersion: '1.0.3607',                     // Set by the packaging script to know our own version
            overrideIntegration: 'cip-reporting-mobile-application', // Name of integration to request for configuration override / merge
         reloadSettingsInterval: 'cipapi-timing-1day',               // How often to reload settings from the server
               reloadMeInterval: 'cipapi-timing-1day',               // How often to reload the current user info from the server
@@ -135,12 +136,15 @@
                persistSettings: true,                               // Store settings in local storage to avoid start up network access
                      persistMe: true,                               // Store config in local storage to avoid start up network access
                   persistForms: true,                               // Store forms in local storage to avoid start up network access
-                      apiForms: { }                                 // Should most likely be loaded from the config override integration
+                      apiForms: { },                                // Should most likely be loaded from the config override integration
                                                                     // In the form of the key is the form integration and the value is the
                                                                     // friendly name to display on the button.  The order controls the order
                                                                     // of the buttons.  Example:
                                                                     //
                                                                     // apiForms: { 'Test Form': 'Create a Test Form', 'New Form': 'Create a New Form' }
+         // Customize the text on the main report list screen
+               reportListTitle: 'Submit a Report',
+         reportListDescription: 'To submit a report select and complete one of these available forms:'
       });
       
       // Are we running in native app or in a browser?
