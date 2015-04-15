@@ -1,0 +1,491 @@
+/*
+ * CIP Reporting API Client Application
+ *
+ * Copyright (c) 2013 CIP Reporting
+ * All rights reserved.
+ * 
+ * Redistribution and use in source and binary forms are permitted
+ * provided that the above copyright notice and this paragraph are
+ * duplicated in all such forms and that any documentation,
+ * advertising materials, and other materials related to such
+ * distribution and use acknowledge that the software was developed
+ * by CIP Reporting.  The name of CIP Reporting may not be used to 
+ * endorse or promote products derived from this software without 
+ * specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED ``AS IS'' AND WITHOUT ANY EXPRESS OR
+ * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
+ * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+ *
+ */
+
+body {
+  padding-bottom: 10px;
+  padding-top: 57px;
+}
+
+body.password {
+  padding-top: 0px;
+}
+
+div.navbar {
+  min-height: 57px;
+}
+
+div.navbar-back-button {
+  padding: 8px 0px 0px 10px;
+  float: left;
+  font-size: 34px;
+}
+
+#navbar-back-button span {  
+  -moz-transform: scale(-1, 1);
+  -webkit-transform: scale(-1, 1);
+  -o-transform: scale(-1, 1);
+  -ms-transform: scale(-1, 1);
+  transform: scale(-1, 1);
+
+  cursor: default;
+  color: #444;
+}
+
+.navbar-back-button-active span {
+  cursor: pointer !important;
+  color: #999 !important;
+}
+
+div.navbar-network-access {
+  padding: 1px 0px 0px 13px;
+  font-size: 34px;
+  color: #999;
+  float: left;
+}
+
+div.navbar-pending-reports {
+  padding: 17px 0px 0px 13px;
+  float: left;
+}
+
+i#navbar-pending-reports {
+  font-size: 18px;
+  color: #ccc;
+}
+
+@media (min-width: 768px) {
+  .navbar-nav > li > a {
+    padding-top: 20px;
+  }
+}
+
+/* Position fixed CSS workaround for iOS */
+.navbar { 
+  position: absolute; 
+} 
+
+/****************************
+ ** Logger...
+ ***************************/
+div#cipapi-inpage-logger {
+  position: absolute; 
+  padding-top: 57px;
+  height: 100vh; 
+  width: 100%; 
+  top: 0px;
+  
+  display: none;
+}
+
+/****************************
+ ** Help...
+ ***************************/
+div#help-content-area {
+  padding: 0 10px;
+}
+
+/****************************
+ ** Loading...
+ ***************************/
+div.initializing img {
+  display: block; 
+  margin: 0 auto;
+}
+
+div.initializing p.lead {
+  margin-top: 20px;
+  text-align: center;
+}
+ 
+ /****************************
+ ** login.js
+ ***************************/
+.form-signin {
+  margin-left: -165px;
+  position: absolute;
+  padding: 15px;
+  width: 330px;
+  left: 50%;
+}
+
+.form-signin button {
+  padding-left: 10px;
+  margin-top: 10px;
+}
+
+.form-signin a.form-signin-control {
+  margin-top: 20px;
+  display: block;
+}
+
+.form-signin p {
+  margin-bottom: 20px;
+  text-align: justify;
+  display: block;
+}
+
+.form-signin .form-signin-heading, .form-signin .checkbox {
+  margin-bottom: 10px;
+}
+
+.form-signin .checkbox {
+  font-weight: normal;
+}
+
+.form-signin .form-control {
+  position: relative;
+  font-size: 16px;
+  height: auto;
+  padding: 10px;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+
+.form-signin div span {
+  display: none;
+}
+
+.form-signin div.failed-validation input {
+  border: 1px solid red;
+}
+
+.form-signin div.failed-validation span {
+  font-weight: bold;
+  display: block;
+  color: #f44;
+}
+
+h3.form-signin-demo {
+  margin-top: 60px;
+}
+
+h4.form-signin-heading {
+  margin-top: 40px;
+}
+
+.form-signin ul {
+  margin-bottom: 20px;
+}
+
+/*********************************
+ * CIP Bootstrap Form Hijinx
+ *********************************/
+.form-cip-reporting div.col-md-12 {
+  clear: both;
+}
+
+.form-cip-reporting div.form-group {
+  position: relative;
+  min-height: 80px;
+}
+
+.form-cip-reporting div.form-group span.jsonform-errortext {
+  position: absolute;
+  color: red;
+  top: -2px;
+  right: 20px;
+}
+
+/*********************************
+ * CIP Form Elements
+ *********************************/
+.form-cip-reporting {
+  padding: 20px 0px;
+  margin: 0 0;
+}
+
+.form-cip-reporting input.cipform-save-report {
+  display: none; /* Proxy Button is Displayed */
+  min-width: 300px;
+  margin: 40px auto 0px auto;
+  clear: both;
+}
+
+.form-cip-reporting a.cipform-proxy-submit {
+  display: block;
+  width: 300px;
+  margin: 40px auto 0px auto;
+  clear: both;
+}
+
+.form-cip-reporting div.jsonform-required label.control-label:after {
+  content: ' *';
+}
+
+.form-cip-reporting div.form-cip-media-container {
+  position: relative;
+  margin: 10px;
+  float: left;
+}
+
+.form-cip-reporting div#form-cip-media-spinner {
+  border: 1px solid #eee;
+  position: relative;
+}
+
+.form-cip-reporting div.form-cip-media-container div {
+  background-image: url("../res/logo_mono_grey_thin.png");
+  position: absolute;
+  margin-left: -17px;
+  margin-top: -17px;
+  height: 34px;
+  width: 34px;
+  left: 50%;
+  top: 50%;
+  
+  -webkit-animation-name: spin;
+  -webkit-animation-duration: 1000ms;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+
+  -moz-animation-name: spin;
+  -moz-animation-duration: 1000ms;
+  -moz-animation-iteration-count: infinite;
+  -moz-animation-timing-function: linear;
+
+  -ms-animation-name: spin;
+  -ms-animation-duration: 1000ms;
+  -ms-animation-iteration-count: infinite;
+  -ms-animation-timing-function: linear;
+  
+  animation-name: spin;
+  animation-duration: 1000ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;  
+}
+
+@-ms-keyframes spin {
+  from { -ms-transform: rotate(0deg); }
+  to { -ms-transform: rotate(360deg); }
+}
+
+@-moz-keyframes spin {
+  from { -moz-transform: rotate(0deg); }
+  to { -moz-transform: rotate(360deg); }
+}
+
+@-webkit-keyframes spin {
+  from { -webkit-transform: rotate(0deg); }
+  to { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  from { transform:rotate(0deg); }
+  to { transform:rotate(360deg); }
+}
+
+.form-cip-reporting div.form-button-list div a {
+  width: 100%;
+  margin-top: 15px;
+}
+
+.form-cip-reporting .error input {
+  background-color: #ffc0c0;
+}
+
+div.cipform_check_m_custom_field label.checkbox {
+  display: inline-table;
+  margin-bottom: 10px;
+  margin-right: 10px;
+  margin-top: 10px;
+}
+
+div.cipform_check_a_custom_field label.checkbox {
+  display: inline-table;
+  margin-bottom: 10px;
+  margin-right: 10px;
+  margin-top: 10px;
+}
+
+div.cipform_multi_custom_field label.checkbox {
+  display: inline-table;
+  margin-bottom: 10px;
+  margin-right: 10px;
+  margin-top: 10px;
+}
+
+div.cipform_check_s_custom_field label.checkbox {
+  display: inline-table;
+  margin-bottom: 10px;
+  margin-right: 10px;
+  margin-top: 10px;
+}
+
+div.cipform_radio_custom_field label.radio {
+  display: inline-table;
+  margin-bottom: 10px;
+  margin-right: 10px;
+  margin-top: 10px;
+}
+
+div.cipform_boxheader_custom_field div span {
+  background-color: #eeeeee;
+  border: 1px solid black;
+  padding-left: 10px;
+  padding-bottom: 5px;
+  font-weight: bold;
+}
+
+div.cipform_header_custom_field div span {
+  padding-left: 10px;
+  padding-bottom: 5px;
+  font-weight: bold;
+  border-bottom: 2px solid black;
+}
+
+div.cipform_instruction_custom_field div span {
+  background-color: #eeeeee;
+  border: 1px solid black;
+  padding-left: 10px;
+  padding-bottom: 5px;
+}
+
+div.cipform_header_custom_field > div,
+div.cipform_boxheader_custom_field > div,
+div.cipform_spacer_custom_field > div,
+div.cipform_notation_custom_field > div,
+div.cipform_instruction_custom_field > div,
+div.cipform_declaration_custom_field > div
+{
+  padding-top: 22px;
+}
+
+/*********************************
+ * Custom Button Style
+ *********************************/
+
+.btn-custom span.glyphicon {
+  margin-right: 10px;
+}  
+ 
+.btn-custom {
+  background-color: hsl(0, 0%, 16%) !important;
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#5b5b5b", endColorstr="#282828");
+  background-image: -khtml-gradient(linear, left top, left bottom, from(#5b5b5b), to(#282828));
+  background-image: -moz-linear-gradient(top, #5b5b5b, #282828);
+  background-image: -ms-linear-gradient(top, #5b5b5b, #282828);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #5b5b5b), color-stop(100%, #282828));
+  background-image: -webkit-linear-gradient(top, #5b5b5b, #282828);
+  background-image: -o-linear-gradient(top, #5b5b5b, #282828);
+  background-image: linear-gradient(#5b5b5b, #282828);
+  border-color: #282828 #282828 hsl(0, 0%, 11%);
+  color: #fff !important;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.33);
+  -webkit-font-smoothing: antialiased;
+  text-align: left;
+}
+
+.btn-custom:hover {
+  background-color: hsl(0, 0%, 7%) !important;
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#444444", endColorstr="#111111");
+  background-image: -khtml-gradient(linear, left top, left bottom, from(#444444), to(#111111));
+  background-image: -moz-linear-gradient(top, #444444, #111111);
+  background-image: -ms-linear-gradient(top, #444444, #111111);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #444444), color-stop(100%, #111111));
+  background-image: -webkit-linear-gradient(top, #444444, #111111);
+  background-image: -o-linear-gradient(top, #444444, #111111);
+  background-image: linear-gradient(#444444, #111111);
+  border-color: #111111 #111111 hsl(0, 0%, 2%);
+  color: #fff !important;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.33);
+  -webkit-font-smoothing: antialiased;
+}
+
+.cipform-real-camera {
+  margin-bottom: 10px;
+  margin-right: 15px;
+  width: 150px;
+}
+
+.cipform-diagnostics-btn {
+  margin: 15px 0px 0px 12px;
+  width: 150px;
+}
+
+.cip-api-continue-to-cip {
+  padding-left: 10px;
+}
+
+/*********************************
+ * Success Screen
+ *********************************/
+
+label.notagain {
+  margin: 40px auto 0px auto;
+  padding-left: 15px;
+  text-indent: -15px;
+  line-height: 13px;
+  cursor: pointer;
+  display: block;
+  width: 180px;
+}
+
+input.notagain {
+  vertical-align: bottom;
+  position: relative;
+  *overflow: hidden;
+  cursor: pointer;
+  height: 13px;
+  width: 13px;
+  padding: 0;
+  top: -1px;
+  margin:0;
+}
+
+/*********************************
+ * DateTime Picker
+ *********************************/
+#ui-datepicker-div {
+  position: fixed !important;
+  left: 50% !important;
+  top: 50% !important;
+  margin-left: -130px; /* approx half the height of the datepicker div - adjust based on your size */
+  margin-top: -229px;  /* half the height of the datepicker div - adjust based on your size */
+  z-index: 9999 !important;
+}
+
+.ui-timepicker-div select {
+  width: 100%;
+}
+
+div#cipapi-screen-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.85);
+  z-index: 9998;
+  color: white;
+  display: none;
+}
+
+.cipapi-fau-read-only {
+  background: #fff !important;
+  cursor: text !important;
+}
