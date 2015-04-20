@@ -4,9 +4,9 @@
   id = "com.appendio.cipreporting"
   version = "1.0.3698">
 
-  <name>CIP Reporting</name>
+  <name>STGC - CIP Reporting</name>
 
-  <description>CIP Reporting Mobile Application</description>
+  <description>STGC Custom CIP Reporting Mobile Application</description>
 
   <author href="http://www.cipreporting.com" email="support@cipreporting.com">CIP Reporting</author>
   
