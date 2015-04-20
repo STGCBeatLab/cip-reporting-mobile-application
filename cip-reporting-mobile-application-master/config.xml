@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <widget xmlns = "http://www.w3.org/ns/widgets"
   xmlns:gap = "http://phonegap.com/ns/1.0"
-  id = "com.appendio.cipreporting"
+  id = "com.stgc.siletztribalgaming"
   version = "1.0.3698">
 
-  <name>STGC - CIP Reporting</name>
+  <name>Gaming Commission Audits</name>
 
-  <description>STGC Custom CIP Reporting Mobile Application</description>
+  <description>CIP Reporting Mobile Application</description>
 
   <author href="http://www.cipreporting.com" email="support@cipreporting.com">CIP Reporting</author>
   

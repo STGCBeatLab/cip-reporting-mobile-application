@@ -22,10 +22,10 @@
 /* Add your own custom CSS rules here */
 
 body {
-	background: url(../img/STGC-BG.gif);
-	background-position:top left;
-	background-repeat:no-repeat;
-	background-size:cover;
+	background:url(../img/1236-768BG.png);
+	background-position:top center;
+	background-repeat:repeat-y;
+	background-size:contain;
 	background-attachment:fixed;
 	color:rgba(224,224,224,1.00);
 	}
@@ -35,8 +35,6 @@ a {
 }
 
 .navbar-collapse{
-
-	
 	background:url(../img/STGC-BG.png);
 	background-position:right;
 	background-repeat:no-repeat;
